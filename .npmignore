@@ -1,0 +1,7 @@
+.*
+*.md
+*.yml
+*.config.js
+src/
+public/
+node_modules/
