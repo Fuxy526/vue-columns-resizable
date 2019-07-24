@@ -2,8 +2,12 @@ export default {
   install(Vue) {
     Vue.directive('columns-resizable', {
       inserted(el) {
-        const nodeName = el.nodeName;
-        if (['TABLE', 'THEAD'].indexOf(nodeName) < 0) return;
+        let nodeName = el.nodeName;
+        if (['TABLE', 'THEAD'].indexOf(nodeName) < 0) {
+            el = el.querySelector('table'); // looking for the closest table
+            if (!el) return;
+            nodeName = 'TABLE';
+        };
 
         const table = nodeName === 'TABLE' ? el : el.parentElement;
         const thead = table.querySelector('thead');
